@@ -1,0 +1,413 @@
+let angle1 = 0; // 첫 번째 캐릭터의 회전 각도
+let angle2 = 0; // 두 번째 캐릭터의 회전 각도
+let angle3 = 0; // 세 번째 캐릭터의 회전 각도
+let angle4 = 0; // 네 번째 캐릭터의 회전 각도
+
+let scale1 = 1.0; // 첫 번째 캐릭터의 크기 조절 비율
+let scale2 = 1.0; // 두 번째 캐릭터의 크기 조절 비율
+let scale3 = 1.0; // 세 번째 캐릭터의 크기 조절 비율
+let scale4 = 1.0; // 네 번째 캐릭터의 크기 조절 비율
+
+let scalingUp1 = true; // 첫 번째 캐릭터의 크기 키우는 중인지 여부를 나타내는 변수
+let scalingUp2 = true; // 두 번째 캐릭터의 크기 키우는 중인지 여부를 나타내는 변수
+let scalingUp3 = true; // 세 번째 캐릭터의 크기 키우는 중인지 여부를 나타내는 변수
+let scalingUp4 = true; // 네 번째 캐릭터의 크기 키우는 중인지 여부를 나타내는 변수
+
+function setup() {
+  createCanvas(800, 600);
+}
+
+function draw() {
+  background(220);
+  
+  // 첫 번째 캐릭터
+  push();
+  translate(width / 5, height / 2);
+  scale(scale1);
+  rotate(angle1);
+  drawCharacter();
+  pop();
+  
+  // 두 번째 캐릭터
+  push();
+  translate(2 * width / 5, height / 2);
+  scale(scale2);
+  rotate(angle2);
+  drawCharacter2();
+  pop();
+  
+  // 세 번째 캐릭터
+  push();
+  translate(3 * width / 5, height / 2);
+  scale(scale3);
+  rotate(angle3);
+  drawCharacter3();
+  pop();
+  
+  // 네 번째 캐릭터
+  push();
+  translate(4 * width / 5, height / 2);
+  scale(scale4);
+  rotate(angle4);
+  drawCharacter4();
+  pop();
+
+  // 각 캐릭터들의 크기 조절 및 회전 속도 조절 코드 추가
+  adjustCharacter1();
+  adjustCharacter2();
+  adjustCharacter3();
+  adjustCharacter4();
+}
+
+function drawCharacter() {
+  // 첫 번째 캐릭터 그리기 코드
+    // 캐릭터 그리기
+  // 몸통
+  fill(0, 255, 0); // 노란색
+  rect(150, 150, 60, 150); // 몸통을 머리보다 가로로 더 얇게 수정
+  fill(0, 234, 0);
+
+  // 머리
+  fill(0, 235, 0); // 흰색
+  rect(145, 100, 70, 60); // 정사각형 모양의 머리를 가운데 정렬
+
+  // 눈
+  fill(0); // 검은색
+  rect(160, 120, 15, 15); // 왼쪽 눈
+  rect(195, 120, 15, 15); // 오른쪽 눈
+  rect(170, 140, 25., 5); // 입
+  rect(170, 140, 5, 10); // 왼쪽 입
+  rect(190, 140, 5, 10); // 오른쪽 입
+
+  // 다리
+  fill(0, 204, 0); // 노란색
+  rect(135, 300, 45, 45); // 다리 크기 수정
+  rect(185, 300, 45, 45); // 다리 크기 수정
+  fill(0);
+  rect(185, 330, 45, 15); // 다리  발톱
+  rect(135, 330, 45, 15);
+}
+
+function drawCharacter2() {
+  // 두 번째 캐릭터 그리기 코드
+    //팔
+  noStroke();
+  fill(141, 104, 96);
+  rect(120, 140, 160, 90);
+  fill(78, 57, 52);
+  rect(120, 205, 160, 25);
+
+  //옷깃
+  fill(116, 86, 78);
+  rect(160, 140, 80, 30);
+
+  //하반신
+  fill(89, 62, 53);
+  rect(160, 230, 80, 140);
+  fill(114, 85, 79);
+  rect(160, 230, 30, 100);
+  fill(114, 85, 79);
+  rect(210, 230, 30, 100);
+  fill(108);
+  rect(160, 350, 80, 20);
+
+  //선
+  fill(77, 56, 51);
+  rect(200, 230, 10, 90);
+  fill(69, 51, 47);
+  rect(190, 230, 10, 90);
+  fill(69, 51, 47);
+  rect(200, 205, 10, 25);
+  fill(102, 75, 68);
+  rect(200, 180, 10, 25);
+  fill(102, 75, 68);
+  rect(190, 170, 10, 15);
+
+  //머리
+  fill(203, 149, 123);
+  rect(160, 40, 80, 100);
+
+  //눈썹, 눈, 입
+  fill(56, 39, 19);
+  rect(170, 90, 60, 10);
+  fill(255);
+  rect(170, 100, 20, 10);
+  fill(255);
+  rect(210, 100, 20, 10);
+  fill(1, 158, 17);
+  rect(180, 100, 10, 10);
+  fill(1, 158, 17);
+  rect(210, 100, 10, 10);
+  fill(129, 69, 56);
+  rect(180, 120, 40, 10);
+
+  //목
+  fill(203, 149, 123);
+  rect(180, 140, 40, 10);
+  fill(203, 149, 123);
+  rect(190, 150, 20, 10);
+
+  //코, 명암
+  fill(154, 100, 72);
+  rect(190, 110, 20, 40);
+  fill(154, 100, 72);
+  rect(160, 110, 10, 30);
+  fill(154, 100, 72);
+  rect(230, 110, 10, 30);
+}
+function drawCharacter3() {
+  // 세 번째 캐릭터 그리기 코드
+  fill(51, 51, 51); //얼굴
+  rect(10, 10, 30, 30);
+  
+  fill(255, 255, 255); //눈
+  rect(14, 22, 8, 4);
+  
+  fill(0, 0, 0); //눈썹
+  rect(10, 17.5, 12.5, 4);
+  
+  fill(255, 255, 255); //눈
+  rect(28, 22, 8, 4);
+  
+  fill(0, 0, 0); //눈썹
+  rect(27.5, 17.5, 12.5, 4);
+  
+  fill(255, 255, 255); //입
+  rect(18.5, 33, 13, 4);
+  
+  fill(51, 51, 51); //몸통
+  rect(20, 40, 10, 80);
+
+  fill(51, 51, 51); //갈비
+  rect(-24, 45, 100, 6);
+  fill(51, 51, 51); //갈비
+  rect(5, 55, 40, 10);
+  fill(51, 51, 51); //갈비
+  rect(5, 70, 40, 10);
+  fill(51, 51, 51); //갈비
+  rect(5, 85, 40, 10);
+  
+  fill(51, 51, 51); //목
+  rect(-24, 40, 6, 8);
+  
+  fill(51, 51, 51); //목
+  rect(70, 40, 6, 8);
+  
+  fill(51, 51, 51); //얼굴
+  rect(-31, 20, 20, 20);
+  
+  fill(255, 255, 255);
+  rect(-30, 29, 6, 2);
+  fill(0, 0, 0);
+  rect(-30, 27, 6, 2);
+  
+  fill(255, 255, 255);
+  rect(-18, 29, 6, 2);
+  fill(0, 0, 0);
+  rect(-18, 27, 6, 2);
+  
+  fill(255, 255, 255);
+  rect(-25, 35, 8, 2);
+  
+  fill(51, 51, 51); //얼굴
+  rect(63, 20, 20, 20);
+  
+  fill(255, 255, 255);
+  rect(64, 29, 6, 2);
+  fill(0, 0, 0);
+  rect(64, 27, 6, 2);
+  
+  fill(255, 255, 255);
+  rect(76, 29, 6, 2);
+  fill(0, 0, 0);
+  rect(76, 27, 6, 2);
+  
+  fill(255, 255, 255);
+  rect(69, 35, 8, 2);
+
+}
+function drawCharacter4() {
+  // 네 번째 캐릭터 그리기 코드
+  //귀
+  push()
+  noStroke()
+  fill(255,228,230)
+  rotate(PI / 3.0);
+  ellipse(-65,90,55,45)
+  pop()
+  
+  push()
+  noStroke()
+  fill(255,228,230)
+  rotate(PI / -3.0);
+  ellipse(65,90,-55,45)
+  pop()
+  
+  //머리카락 
+  push()
+  noStroke()
+  fill(0)
+  quad(-80, -140, 0, 0, 0, 0, -100, 0);
+  quad(100, 0, 0, 0, 0, 0, 80, -140);
+  
+  triangle(-100, 0, 30, 0, -70, -150);
+  triangle(-100, 0, 30, 0, -55, -157);
+  triangle(-100, 0, 30, 0, -40, -160);
+  triangle(-100, 0, 30, 0, -25, -160);
+  triangle(-80, 0, 40, 0, -10, -160);
+  
+  triangle(-65, 0, 65, 0, 0, -160);
+  
+  triangle(100, 0, -30, 0, 70, -150);
+  triangle(100, 0, -30, 0, 55, -157);
+  triangle(100, 0, -30, 0, 40, -160);
+  triangle(100, 0, -30, 0, 25, -160);
+  triangle(80, 0, -40, 0, 10, -160);
+  pop()
+  
+  
+  //얼굴형 
+  push()
+  noStroke()
+  fill(255,228,230)
+  quad(-70, -100, 70, -100, 100, 0, -100, 0);
+  ellipse(0,0,200,150,30);
+  ellipse(0,-100,140,30);
+  pop()
+  
+  //입
+  
+  push()
+  noStroke()
+  fill(255,120,120)
+  arc(0, -25, 100, 170 , 0,  PI, PIE);
+  
+  fill(255)
+  ellipse(0,-15,90,25,30);
+  quad(-47,-25 , 47, -25, 45, -15, -45, -15);
+
+  fill(255,228,230)
+  ellipse(0,-25,100,20,30);
+  pop()
+  
+  //눈썹
+  
+  push()
+  fill(0)
+  ellipse(20,-75,21,23)
+  pop()
+  
+   push()
+  noStroke()
+  fill(255,228,230)
+  ellipse(20,-70,22,22)
+  pop()
+  
+  push()
+  fill(0)
+  ellipse(-20,-75,-21,23)
+  pop()
+  
+   push()
+  noStroke()
+  fill(255,228,230)
+  ellipse(-20,-70,-22,22)
+  pop()
+  
+   //눈
+  push()
+  noStroke()
+  ellipse(-19,-60,15,20)
+  ellipse(19,-60,15,20)
+  fill(0)
+  ellipse(-16,-58,8,14)
+  ellipse(16,-58,8,14)
+  
+  pop()
+  
+  //얼굴 디테일
+  
+  push()
+  strokeWeight(2);
+  line(-20, -30, 20, -35);
+  line(-15, -35, 15, -40);
+  pop()
+  
+  //따봉
+  push()
+  noStroke()
+  fill(255,228,230)
+  rotate(PI / -8.0);
+  ellipse(-120,95,90,110)
+  ellipse(-100,65,60,40)
+  ellipse(-95,95,60,40)
+  ellipse(-97,127,55,38)
+  
+  ellipse(-120,20,45,65)
+  triangle(-150, 80, -140, 10, -100, 60);
+}
+
+function adjustCharacter1() {
+  // 첫 번째 캐릭터의 크기 조절 및 회전 속도 조절 코드
+  if (scalingUp1) {
+    scale1 += 0.01;
+  } else {
+    scale1 -= 0.01;
+  }
+
+  if (scale1 > 1.5 || scale1 < 0.5) {
+    scalingUp1 = !scalingUp1;
+  }
+
+  angle1 += 0.01;
+}
+
+function adjustCharacter2() {
+  // 두 번째 캐릭터의 크기 조절 및 회전 속도 조절 코드
+  if (scalingUp2) {
+    scale2 += 0.01;
+  } else {
+    scale2 -= 0.01;
+  }
+
+  if (scale2 > 1.5 || scale2 < 0.5) {
+    scalingUp2 = !scalingUp2;
+  }
+
+  angle2 -= 0.01;
+}
+
+function adjustCharacter3() {
+  // 세 번째 캐릭터의 크기 조절 및 회전 속도 조절 코드
+  if (scalingUp3) {
+    scale3 += 0.01; // 크기 키우기
+  } else {
+    scale3 -= 0.01; // 크기 줄이기
+  }
+  
+  // 회전 속도 설정
+  angle3 += 0.03; // 회전 속도 조절
+  
+  // 크기가 일정 범위를 벗어나면 방향 변경
+  if (scale3 > 1.5 || scale3 < 0.5) {
+    scalingUp3 = !scalingUp3;
+  }
+  
+}
+
+function adjustCharacter4() {
+  // 네 번째 캐릭터의 크기 조절 및 회전 속도 조절 코드
+  if (scalingUp4) {
+    scale4 += 0.02; // 크기 키우기
+  } else {
+    scale4 -= 0.02; // 크기 줄이기
+  }
+  
+  // 회전 속도 설정
+  angle4 -= 0.05; // 회전 속도 조절
+  
+  // 크기가 일정 범위를 벗어나면 방향 변경
+  if (scale4 > 1.5 || scale4 < 0.5) {
+    scalingUp4 = !scalingUp4;
+  }
+}
